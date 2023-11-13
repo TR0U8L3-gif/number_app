@@ -9,9 +9,9 @@ abstract class NumberTriviaLocalDataSource {
 
   Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache);
 
-  //TODO: implement
-  Future<NumberTriviaModel> getConcreteNumberTrivia(int number);
-
-  ///TODO: implement
-  Future<NumberTriviaModel> getRandomNumberTrivia();
+  // //TODO: implement
+  // Future<NumberTriviaModel> getConcreteNumberTrivia(int number);
+  //
+  // ///TODO: implement
+  // Future<NumberTriviaModel> getRandomNumberTrivia();
 }
