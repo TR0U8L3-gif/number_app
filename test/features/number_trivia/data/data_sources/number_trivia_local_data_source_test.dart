@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:number_app/core/error/exceptions.dart';
-import 'package:number_app/features/number_trivia/data/data_sources/number_trivia_local_data_source_impl.dart';
+import 'package:number_app/features/number_trivia/data/data_sources/local/number_trivia_local_data_source_impl.dart';
 import 'package:number_app/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

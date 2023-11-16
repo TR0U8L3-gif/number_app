@@ -1,4 +1,4 @@
-import '../models/number_trivia_model.dart';
+import '../../models/number_trivia_model.dart';
 
 abstract class NumberTriviaLocalDataSource {
   /// Gets the cached [NumberTriviaModel] which was gotten the last time

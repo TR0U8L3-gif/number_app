@@ -6,8 +6,8 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/entities/number_trivia.dart';
 
 import '../../domain/repositories/number_trivia_repository.dart';
-import '../data_sources/number_trivia_local_data_source.dart';
-import '../data_sources/number_trivia_remote_data_source.dart';
+import '../data_sources/local/number_trivia_local_data_source.dart';
+import '../data_sources/remote/number_trivia_remote_data_source.dart';
 import '../models/number_trivia_model.dart';
 
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {

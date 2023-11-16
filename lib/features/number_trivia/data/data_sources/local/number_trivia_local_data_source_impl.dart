@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/error/exceptions.dart';
-import '../models/number_trivia_model.dart';
+import '../../../../../core/error/exceptions.dart';
+import '../../models/number_trivia_model.dart';
 import 'number_trivia_local_data_source.dart';
 
 // ignore: constant_identifier_names

@@ -4,8 +4,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:number_app/core/error/exceptions.dart';
 import 'package:number_app/core/error/failures.dart';
 import 'package:number_app/core/network/network_info.dart';
-import 'package:number_app/features/number_trivia/data/data_sources/number_trivia_local_data_source.dart';
-import 'package:number_app/features/number_trivia/data/data_sources/number_trivia_remote_data_source.dart';
+import 'package:number_app/features/number_trivia/data/data_sources/local/number_trivia_local_data_source.dart';
+import 'package:number_app/features/number_trivia/data/data_sources/remote/number_trivia_remote_data_source.dart';
 import 'package:number_app/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:number_app/features/number_trivia/data/repositories/number_trivia_repository_impl.dart';
 import 'package:number_app/features/number_trivia/domain/entities/number_trivia.dart';
@@ -58,7 +58,7 @@ main() {
       when(() => mockRemoteDataSource.getConcreteNumberTrivia(tNumber))
           .thenAnswer((_) async => tNumberTriviaModel);
       when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
-          .thenAnswer((_) async => Future.value());
+          .thenAnswer((_) async => Future.value(true));
       when(() => mockNetworkInfo.isConnected)
           .thenAnswer((_) async => true);
       // act
@@ -75,7 +75,7 @@ main() {
           when(() => mockRemoteDataSource.getConcreteNumberTrivia(tNumber))
               .thenAnswer((invocation) async => tNumberTriviaModel);
           when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
-              .thenAnswer((invocation) async => Future.value());
+              .thenAnswer((invocation) async => Future.value(true));
           // act
           await repository.getConcreteNumberTrivia(tNumber);
           // assert
@@ -91,7 +91,7 @@ main() {
           when(() => mockRemoteDataSource.getConcreteNumberTrivia(tNumber))
               .thenAnswer((invocation) async => tNumberTriviaModel);
           when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
-              .thenAnswer((invocation) => Future.value());
+              .thenAnswer((invocation) => Future.value(true));
           // act
           final result = await repository.getConcreteNumberTrivia(tNumber);
           // assert
@@ -107,7 +107,7 @@ main() {
           when(() => mockRemoteDataSource.getConcreteNumberTrivia(tNumber))
               .thenThrow(ServerException());
           when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
-              .thenAnswer((invocation) => Future.value());
+              .thenAnswer((invocation) => Future.value(false));
           // act
           final result = await repository.getConcreteNumberTrivia(tNumber);
           // assert
@@ -160,7 +160,7 @@ main() {
             .thenAnswer((_) async => true);
         when(() => mockRemoteDataSource.getRandomNumberTrivia())
             .thenAnswer((_) async => tNumberTriviaModel);
-        when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) async => Future.value());
+        when(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) async => Future.value(true));
         // act
         repository.getRandomNumberTrivia();
         // assert
@@ -174,9 +174,9 @@ main() {
         () async {
           // arrange
           when(()=> mockRemoteDataSource.getRandomNumberTrivia()).thenAnswer((invocation) async => tNumberTriviaModel);
-          when(()=> mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) => Future.value());
+          when(()=> mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) => Future.value(true));
           // act
-          final result = await repository.getRandomNumberTrivia();
+          await repository.getRandomNumberTrivia();
           // assert
           verify(() => mockRemoteDataSource.getRandomNumberTrivia());
           verify(() => mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel));
@@ -189,7 +189,7 @@ main() {
         () async {
           // arrange
           when(()=> mockRemoteDataSource.getRandomNumberTrivia()).thenAnswer((invocation) async => tNumberTriviaModel);
-          when(()=> mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) => Future.value());
+          when(()=> mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel)).thenAnswer((invocation) => Future.value(true));
           // act
           final result = await repository.getRandomNumberTrivia();
           // assert
