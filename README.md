@@ -2,15 +2,10 @@
 
 Number game app
 
-## Getting Started
+## App Overview
 
-This project is a starting point for a Flutter application.
+The purpose of the application is to download interesting information about a specific number from the API, save it in the device's memory and display all relevant information on the screen.
 
-A few resources to get you started if this is your first Flutter project:
+## Repository Description
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The aim of this project is to gain practical experience in implementing the principles of Clean Architecture, using the Test-Driven Development (TDD) methodology and mastering the creation of effective tests in the Flutter environment.
