@@ -22,12 +22,12 @@ main() {
 
   void setUpMockDioRequestSuccess() {
     when(() => mockDio.get(any()))
-        .thenAnswer((invocation) async => Response(requestOptions: RequestOptions(), data: fixture('trivia.json'), statusCode: 200));
+        .thenAnswer((invocation) async => Response(requestOptions: RequestOptions(), data: json.decode(fixture('trivia.json')), statusCode: 200));
   }
 
   void setUpMockDioRequestError() {
     when(() => mockDio.get(any()))
-        .thenAnswer((invocation) async => Response(requestOptions: RequestOptions(), data: fixture('trivia.json'), statusCode: 404));
+        .thenAnswer((invocation) async => Response(requestOptions: RequestOptions(), data: json.decode(fixture('trivia.json')), statusCode: 404));
   }
 
   group("getConcreteNumberTrivia", () {

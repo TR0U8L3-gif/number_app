@@ -60,7 +60,7 @@ main() {
         // act
         final result = tNumberTriviaModel.toJson();
         // assert
-        expect(result, {'number': 1, 'text': "Test text"});
+        expect(result, {'number': 1, 'text': "Test text", 'isFromCache': false});
       },
     );
   });

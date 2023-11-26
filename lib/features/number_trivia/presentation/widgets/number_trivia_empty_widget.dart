@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../config/assets.dart';
 import '../../../../config/theme.dart';
 import 'message_display.dart';
+import 'title_display.dart';
 
 class NumberTriviaEmptyWidget extends StatelessWidget {
   const NumberTriviaEmptyWidget({super.key});
@@ -13,6 +14,7 @@ class NumberTriviaEmptyWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
+        const TitleDisplay(title: "Number Trivia"),
         const MessageDisplay(
           message: "Start searching!!!",
           isFontSizeLarge: false,

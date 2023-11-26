@@ -6,7 +6,7 @@ abstract class NumberTriviaEvent extends Equatable {
 
 class GetTriviaForConcreteNumber extends NumberTriviaEvent {
   final String numberString;
-  GetTriviaForConcreteNumber({required this.numberString}) : assert(numberString.isNotEmpty);
+  const GetTriviaForConcreteNumber({required this.numberString});
 
   int get number => int.parse(numberString);
   @override

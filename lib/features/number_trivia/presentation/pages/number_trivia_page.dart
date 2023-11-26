@@ -28,7 +28,6 @@ class NumberTriviaPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const TitleDisplay(title: "Number Trivia"),
             Expanded(
               child: BlocBuilder<NumberTriviaBloc, NumberTriviaState>(builder: (context, state) {
                 if (state is NumberTriviaEmpty) {
@@ -46,7 +45,7 @@ class NumberTriviaPage extends StatelessWidget {
                 return const SizedBox();
               }),
             ),
-            Navigation()
+            const Navigation()
           ],
         ),
       ),

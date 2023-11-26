@@ -14,7 +14,6 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
 
   final TextEditingController _controller = TextEditingController();
-  String input = "";
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,6 @@ class _NavigationState extends State<Navigation> {
                         ),
                         child: TextField(
                           controller: _controller,
-                          onChanged: (value) => input = value,
                           keyboardType: const TextInputType.numberWithOptions(),
                           style: const TextStyle(fontSize: fontSmall, color: AppColors.darkBlue, fontWeight: FontWeight.w500),
                           textAlign: TextAlign.center,
@@ -52,7 +50,7 @@ class _NavigationState extends State<Navigation> {
                       ),
                     )),
                 InkWell(
-                  onTap: () => buttonPress(context, GetTriviaForConcreteNumber(numberString: input)),
+                  onTap: () => buttonPress(context, GetTriviaForConcreteNumber(numberString: _controller.text)),
                   borderRadius: const BorderRadius.all(Radius.circular(paddingLarge)),
                   child: Ink(
                     height: 60,

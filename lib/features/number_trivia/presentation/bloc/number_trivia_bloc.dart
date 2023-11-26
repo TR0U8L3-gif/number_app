@@ -18,7 +18,7 @@ part 'number_trivia_state.dart';
 //ignore: constant_identifier_names
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 //ignore: constant_identifier_names
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
+const String CACHE_FAILURE_MESSAGE = 'Cache Failure - failed to retrieve number trivia from cache.\n\nOne of the reasons may be the lack of previously saved trivia on the device.\n\nConnect to the Internet and search for number trivia to save it.';
 //ignore: constant_identifier_names
 const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Input - number must be a positive integer or zero';
 
@@ -40,8 +40,8 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
     GetTriviaForConcreteNumber event,
     Emitter<NumberTriviaState> emit,
   ) async {
-    final inputEither = inputConverter.stringToUnsignedInt(event.numberString);
-    inputEither.fold((failure) {
+    final inputEither =  inputConverter.stringToUnsignedInt(event.numberString);
+    await inputEither.fold((failure) {
       emit(const NumberTriviaError(message: INVALID_INPUT_FAILURE_MESSAGE));
     }, (number) async {
       emit(NumberTriviaLoading());

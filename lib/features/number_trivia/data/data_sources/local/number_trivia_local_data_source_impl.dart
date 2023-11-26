@@ -14,7 +14,8 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource{
   NumberTriviaLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<bool> cacheNumberTrivia(NumberTriviaModel triviaToCache) async {
+  Future<bool> cacheNumberTrivia(NumberTriviaModel trivia) async {
+    NumberTriviaModel triviaToCache = NumberTriviaModel(number: trivia.number, text: trivia.text, isFromCache: true);
     return sharedPreferences.setString(CASHED_NUMBER_TRIVIA, json.encode(triviaToCache.toJson()));
   }
 
