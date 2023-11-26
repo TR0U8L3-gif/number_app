@@ -17,7 +17,7 @@ class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource{
     Response response = await dio.get(path);
 
     if(response.statusCode == 200){
-      return NumberTriviaModel.fromJson(json.decode(response.data));
+      return NumberTriviaModel.fromJson(response.data);
     } else {
       throw ServerException();
     }
@@ -29,7 +29,7 @@ class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource{
     Response response = await dio.get(path);
 
     if(response.statusCode == 200){
-      return NumberTriviaModel.fromJson(json.decode(response.data));
+      return NumberTriviaModel.fromJson(response.data);
     } else {
       throw ServerException();
     }

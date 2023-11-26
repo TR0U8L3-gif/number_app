@@ -15,50 +15,48 @@ import 'features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart'
 import 'features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
 import 'features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 
-final GetIt getIt = GetIt.instance;
+final GetIt locator = GetIt.instance;
 
-void init() {
-/// Features - Number Trivia
-
+void setupServiceLocator() async {
+  /// Features - Number Trivia
   //Bloc
-  getIt.registerFactory(() =>
-      NumberTriviaBloc(
-        getConcreteNumberTrivia: getIt(),
-        getRandomNumberTrivia: getIt(),
-        inputConverter: getIt(),
+  locator.registerFactory(() => NumberTriviaBloc(
+        getConcreteNumberTrivia: locator(),
+        getRandomNumberTrivia: locator(),
+        inputConverter: locator(),
       ));
 
   //Use case
-  getIt.registerLazySingleton(() => GetConcreteNumberTrivia(getIt()));
-  getIt.registerLazySingleton(() => GetRandomNumberTrivia(getIt()));
+  locator.registerLazySingleton(() => GetConcreteNumberTrivia(locator()));
+  locator.registerLazySingleton(() => GetRandomNumberTrivia(locator()));
 
   //Repository
-  getIt.registerLazySingleton<NumberTriviaRepository>(() =>
-      NumberTriviaRepositoryImpl(
-        remoteDataSource: getIt(),
-        localDataSource: getIt(),
-        networkInfo: getIt(),
+  locator.registerLazySingleton<NumberTriviaRepository>(() => NumberTriviaRepositoryImpl(
+        remoteDataSource: locator(),
+        localDataSource: locator(),
+        networkInfo: locator(),
       ));
 
   //Data sources
-  getIt.registerLazySingleton<NumberTriviaRemoteDataSource>(() => NumberTriviaRemoteDataSourceImpl(dio: getIt()));
-  getIt.registerLazySingleton<NumberTriviaLocalDataSource>(() => NumberTriviaLocalDataSourceImpl(sharedPreferences: getIt()));
+  locator.registerLazySingleton<NumberTriviaRemoteDataSource>(() => NumberTriviaRemoteDataSourceImpl(dio: locator()));
+  locator.registerSingletonAsync<NumberTriviaLocalDataSource>(
+      () async => NumberTriviaLocalDataSourceImpl(sharedPreferences: await locator.getAsync<SharedPreferences>()));
 
-/// Core
+  /// Core
 
   //network
-  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetConnectionChecker: getIt()));
+  locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetConnectionChecker: locator()));
   //utils
-  getIt.registerLazySingleton(() => InputConverter());
+  locator.registerLazySingleton(() => InputConverter());
 
-/// External
+  /// External
 
   //Dio
-  getIt.registerLazySingleton(() => Dio());
+  locator.registerLazySingleton(() => Dio());
 
   //Shared preferences
-  getIt.registerLazySingletonAsync<SharedPreferences>(() => SharedPreferences.getInstance());
+  locator.registerLazySingletonAsync<SharedPreferences>(() => SharedPreferences.getInstance());
 
   //Internet connection checker
-  getIt.registerSingleton(InternetConnectionChecker());
+  locator.registerSingleton(InternetConnectionChecker());
 }
