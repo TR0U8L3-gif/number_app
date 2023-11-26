@@ -1,0 +1,9 @@
+flutter_launcher_icons:
+  image_path: "assets/images/number_trivia_logo.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "#324376"
+  adaptive_icon_foreground: "assets/images/number_trivia_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  background_color_ios: "#324376"

@@ -16,17 +16,20 @@ class NumberTriviaEmptyWidget extends StatelessWidget {
       children: [
         const TitleDisplay(title: "Number Trivia"),
         const MessageDisplay(
-          message: "Start searching!!!",
+          message: "start searching",
           isFontSizeLarge: false,
         ),
         Expanded(
-          child: ScrollConfiguration(
-            behavior: NoGlowScrollBehavior(),
-            child: SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              child: Image.asset(
-                Assets.imagesNumberTriviaLogo,
-                width: size.width * 0.6,
+          child: Padding(
+            padding: const EdgeInsets.only(top: paddingMedium),
+            child: ScrollConfiguration(
+              behavior: NoGlowScrollBehavior(),
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Image.asset(
+                  Assets.imagesNumberTriviaLogo,
+                  width: size.width * 0.48,
+                ),
               ),
             ),
           ),
